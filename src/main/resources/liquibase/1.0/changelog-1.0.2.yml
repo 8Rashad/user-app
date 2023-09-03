@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create book table
+      author: Rashad Suleymanov
+      changes:
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: book
+            baseColumnNames: author_id
+            referencedTableName: author
+            referencedColumnNames: id
+            constraintName: fk_author_id
+
+            remarks: Table to store info about books
+
+
+
